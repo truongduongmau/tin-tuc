@@ -18,10 +18,10 @@ export class HomeMainComponent implements OnInit {
     }
 
     getData() {
-        this.page += 1
+        this.page += 1;
+        this.isLoading = true;
         this.httpService.getContents(this.page)
             .subscribe((data: any) => {
-                this.isLoading = false;
                 let fastnews_main = document.getElementById("fastnews-main-contents")
                 let dom_document = new DOMParser().parseFromString(data, "text/html");
                 let news = dom_document.querySelectorAll("div.list-fast-news > .item");
@@ -35,6 +35,10 @@ export class HomeMainComponent implements OnInit {
                     title?.setAttribute("href", "https://cafef.vn" + href)
                     fastnews_main?.append(item)
                 })
+            },
+            () => {},
+            () => {
+                this.isLoading = false;
             });
     }
 }
