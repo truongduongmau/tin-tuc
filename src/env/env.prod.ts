@@ -1,4 +1,4 @@
 export const env = {
     production: true,
-    apiURL: 'https://cafef.vn'
+    apiURL: 'https://cors-anywhere.herokuapp.com/https://cafef.vn'
 };

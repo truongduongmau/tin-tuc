@@ -10,7 +10,7 @@ export class HttpService {
     constructor(private http: HttpClient) { }
 
     getContents(page: number) {
-        return this.http.get(`https://cors-anywhere.herokuapp.com/https://cafef.vn/doc-nhanh/trang-${page}.chn`, {
+        return this.http.get(`${env.apiURL}/doc-nhanh/trang-${page}.chn`, {
             responseType: "text", headers: {
                 "X-Requested-With": "XMLHttpRequest"
             }
