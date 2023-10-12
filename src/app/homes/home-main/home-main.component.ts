@@ -22,6 +22,7 @@ export class HomeMainComponent implements OnInit {
         this.isLoading = true;
         this.httpService.getContents(this.page)
             .subscribe((data: any) => {
+                this.isLoading = false;
                 let fastnews_main = document.getElementById("fastnews-main-contents")
                 let dom_document = new DOMParser().parseFromString(data, "text/html");
                 let news = dom_document.querySelectorAll("div.list-fast-news > .item");
@@ -36,7 +37,6 @@ export class HomeMainComponent implements OnInit {
                     fastnews_main?.append(item)
                 })
             },
-            () => {},
             () => {
                 this.isLoading = false;
             });

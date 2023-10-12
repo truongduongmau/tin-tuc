@@ -36,7 +36,7 @@ body {
   position: relative;
 }
 .nv-text-cont {
-  padding: 10px 0 0;
+  padding: 20px 0 0;
 }
 .nviewer .timeTitle {
   color: #666;
@@ -61,7 +61,7 @@ body {
   color: #999;
 }
 .nv-details {
-  padding: 5px 0 15px;
+  padding: 5px 0 25px;
 }
 .text-right {
   text-align: right;
