@@ -9,6 +9,8 @@ import { HttpService } from '../services/http.service';
 export class HomeMainComponent implements OnInit {
     fastnews_main: string = "";
     page: number = 0;
+    isLoading: boolean = false;
+
     constructor(private httpService: HttpService) { }
 
     ngOnInit(): void {
@@ -19,6 +21,7 @@ export class HomeMainComponent implements OnInit {
         this.page += 1
         this.httpService.getContents(this.page)
             .subscribe((data: any) => {
+                this.isLoading = false;
                 let fastnews_main = document.getElementById("fastnews-main-contents")
                 let dom_document = new DOMParser().parseFromString(data, "text/html");
                 let news = dom_document.querySelectorAll("div.list-fast-news > .item");
