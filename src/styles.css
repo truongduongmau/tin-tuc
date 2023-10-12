@@ -36,7 +36,7 @@
 }
 .nviewer .timeTitle {
   color: #666;
-  line-height: 20px;
+  line-height: 22px;
 }
 .nviewer .title-wrap {
   position: relative;
@@ -47,11 +47,14 @@
 }
 .nviewer .news-title {
   font-weight: 600;
-  color: #333;
+  color: #111;
   text-decoration: none;
   text-align: left;
   display: block;
   font-size: 1.15em;
+}
+.nviewer .news-title:visited {
+    color: #999;
 }
 .nv-details {
   padding: 5px 0 15px;
