@@ -10,8 +10,7 @@ export class HttpService {
     constructor(private http: HttpClient) { }
 
     getContents(page: number) {
-        const salt = (new Date()).getTime();
-        return this.http.get(`${env.apiURL}/doc-nhanh/trang-${page}.chn?${salt}`, {
+        return this.http.get(`${env.apiURL}/doc-nhanh/trang-${page}.chn`, {
             responseType: "text", headers: {
                 "X-Requested-With": "XMLHttpRequest",
             }
