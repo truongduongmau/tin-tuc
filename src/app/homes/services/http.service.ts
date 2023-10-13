@@ -10,9 +10,13 @@ export class HttpService {
     constructor(private http: HttpClient) { }
 
     getContents(page: number) {
-        return this.http.get(`${env.apiURL}/doc-nhanh/trang-${page}.chn`, {
+        const salt = (new Date()).getTime();
+        return this.http.get(`${env.apiURL}/doc-nhanh/trang-${page}.chn?${salt}`, {
             responseType: "text", headers: {
-                "X-Requested-With": "XMLHttpRequest"
+                "X-Requested-With": "XMLHttpRequest",
+                'Cache-Control': 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
+                'Pragma': 'no-cache',
+                'Expires': '0'
             }
         });
     }
