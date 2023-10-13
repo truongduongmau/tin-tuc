@@ -11,9 +11,7 @@ export class HttpService {
 
     getContents(page: number) {
         const salt = (new Date()).getTime();
-        let url = env.apiURL;
-        url = "https://api.allorigins.win/raw?url=https://cafef.vn"
-        return this.http.get(`${url}/doc-nhanh/trang-${page}.chn?${salt}`, {
+        return this.http.get(`${env.apiURL}/doc-nhanh/trang-${page}.chn?${salt}`, {
             responseType: "text", headers: {
                 "X-Requested-With": "XMLHttpRequest",
             }
