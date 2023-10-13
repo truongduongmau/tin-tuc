@@ -11,12 +11,11 @@ export class HttpService {
 
     getContents(page: number) {
         const salt = (new Date()).getTime();
-        return this.http.get(`${env.apiURL}/doc-nhanh/trang-${page}.chn`, {
+        let url = env.apiURL;
+        url = "https://api.allorigins.win/raw?url=https://cafef.vn"
+        return this.http.get(`${url}/doc-nhanh/trang-${page}.chn?${salt}`, {
             responseType: "text", headers: {
                 "X-Requested-With": "XMLHttpRequest",
-                'Cache-Control': 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
-                'Pragma': 'no-cache',
-                'Expires': '0'
             }
         });
     }
