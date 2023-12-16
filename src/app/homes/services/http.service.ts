@@ -12,7 +12,8 @@ export class HttpService {
     getContents(page: number) {
         const salt = (new Date()).getTime();
         return this.http.get(`${env.apiURL}/doc-nhanh/trang-${page}.chn?${salt}`, {
-            responseType: "text", headers: {
+            responseType: "text", 
+            headers: {
                 "X-Requested-With": "XMLHttpRequest",
             }
         });
