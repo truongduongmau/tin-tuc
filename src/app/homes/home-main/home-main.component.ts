@@ -17,8 +17,8 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
     callApi$: Subject<string> = new Subject();
     hostIndex: number = 0;
     hosts = [
-        'https://api.allorigins.win/raw?url=https://cafef.vn',
         'https://thingproxy.freeboard.io/fetch/https://cafef.vn',
+        'https://api.allorigins.win/raw?url=https://cafef.vn',
         'https://cors-anywhere.herokuapp.com/http://103.179.190.146:8080/https://cafef.vn',
     ]
 
