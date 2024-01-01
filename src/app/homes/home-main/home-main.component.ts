@@ -18,7 +18,6 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
     hostIndex: number = 0;
     hosts = [
         'https://thingproxy.freeboard.io/fetch/http://103.179.190.146:8080/https://cafef.vn',
-        'https://thingproxy.freeboard.io/fetch/https://cafef.vn',
         'https://cors-anywhere.herokuapp.com/http://103.179.190.146:8080/https://cafef.vn',
         'https://api.allorigins.win/raw?url=https://cafef.vn',
     ]
@@ -52,7 +51,6 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
     getData() {
         this.isLoading = true;
         this.hostIndex = 0;
-        //this.callApi$.next(this.hosts[this.hostIndex]);
         this.getContents(this.hosts[this.hostIndex])
     }
 
@@ -91,6 +89,7 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
                 this.getDataSuccess(data);
             },
             () => {
+                if (apiUrl.indexOf('https://cors-anywhere.herokuapp.com') == 0) window.open('https://cors-anywhere.herokuapp.com/corsdemo', '_blank')
                 this.hostIndex++;
                 if (this.hosts[this.hostIndex]) {
                     this.getContents(this.hosts[this.hostIndex])
