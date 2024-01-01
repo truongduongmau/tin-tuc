@@ -61,18 +61,24 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         let dom_document = new DOMParser().parseFromString(data, "text/html");
         const news = dom_document.querySelectorAll("div.list-fast-news > .item");
+        if (news.length) {
+            news.forEach((item) => {
+                let timeTitle = item.querySelector("div.timeTitle")
+                const time = item.querySelector("span.time");
+                const timeText = (time?.innerHTML || "").replace("(", "").replace(")", "");
+                timeTitle?.replaceChildren(timeText);
 
-        news.forEach((item) => {
-            let timeTitle = item.querySelector("div.timeTitle")
-            const time = item.querySelector("span.time");
-            const timeText = (time?.innerHTML || "").replace("(", "").replace(")", "");
-            timeTitle?.replaceChildren(timeText);
-
-            let title = item.querySelector(".title-wrap > a")
-            const href = title?.getAttribute("href")
-            title?.setAttribute("href", "https://cafef.vn" + href)
-            this.fastnews_main?.append(item)
-        })
+                let title = item.querySelector(".title-wrap > a")
+                const href = title?.getAttribute("href")
+                title?.setAttribute("href", "https://cafef.vn" + href)
+                this.fastnews_main?.append(item)
+            })
+        } else {
+            this.hostIndex++;
+            if (this.hosts[this.hostIndex]) {
+                this.getContents(this.hosts[this.hostIndex])
+            }
+        }
     }
 
     ngOnDestroy(): void {
