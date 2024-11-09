@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { exhaustMap } from 'rxjs/internal/operators/exhaustMap';
 import { Subject } from 'rxjs/internal/Subject';
 import { catchError, finalize, mergeMap, retryWhen, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home-main',
@@ -24,7 +25,7 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
         'https://cors-anywhere.herokuapp.com/http://103.179.190.146:8080/https://cafef.vn',
     ]
 
-    constructor(private httpService: HttpService) { }
+    constructor(private httpService: HttpService, private readonly renderer: Renderer2, private router: Router) { }
 
     ngOnInit(): void {
         this.callApi$
@@ -71,6 +72,13 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
                 let title = item.querySelector(".title-wrap > a")
                 const href = title?.getAttribute("href")
                 title?.setAttribute("href", "https://cafef.vn" + href)
+              
+                this.renderer.listen(title, 'click', (event: Event) => {
+                    event.preventDefault();
+                    const path = window.btoa(`${this.hosts[this.hostIndex]}/${href}`)
+                    this.router.navigate([`/${path}`]);
+                })
+
                 this.fastnews_main?.append(item)
             })
         } else {
