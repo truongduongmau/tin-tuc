@@ -17,6 +17,7 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
     callApi$: Subject<string> = new Subject();
     hostIndex: number = 0;
     hosts = [
+        'https://cors-vhtg.onrender.com/https://cafef.vn',
         'https://cors-anywhere.ttqdashboard.com/https://cafef.vn',
         'https://api.allorigins.win/raw?url=https://cafef.vn',
         'https://thingproxy.freeboard.io/fetch/https://cafef.vn',
