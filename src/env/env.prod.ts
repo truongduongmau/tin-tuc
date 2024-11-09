@@ -1,4 +1,4 @@
 export const env = {
     production: true,
-    PATH: '/tin-tuc/'
+    PATH: 'tin-tuc/'
 };
