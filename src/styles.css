@@ -1,4 +1,6 @@
-*, ::after, ::before {
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
@@ -12,11 +14,13 @@
 body {
   font-size: 1em;
 }
+
 .fastnews-main {
   max-width: 1000px;
   margin: auto;
   padding: 0 5px;
 }
+
 .tinnhanh_title {
   font-family: Verdana;
   font-weight: bold;
@@ -24,33 +28,41 @@ body {
   text-transform: uppercase;
   color: #cc0001;
 }
+
 .tinnhanh_title span {
   font-size: 1.1em;
 }
+
 .nviewer {
   clear: both;
   margin-bottom: 15px;
   position: relative;
 }
+
 .item {
   border-top: solid 1px #d4e0e0;
   padding: 10px 0;
 }
+
 .list-fast-news {
   padding-left: 40px;
   padding-bottom: 30px;
 }
+
 .nviewer .timeTitle {
   color: #666;
   line-height: 22px;
 }
+
 .nviewer .title-wrap {
   position: relative;
 }
+
 .time,
 .doctoanbo {
   display: none;
 }
+
 .nviewer .news-title {
   font-weight: 600;
   color: #111;
@@ -59,22 +71,28 @@ body {
   display: block;
   font-size: 1.15em;
 }
+
 .nviewer .news-title:visited {
   color: #999;
 }
+
 .nv-details {
   padding: 5px 0 0;
 }
+
 .text-right {
   text-align: right;
 }
+
 .buttons {
   text-align: center;
   margin-bottom: 30px;
 }
+
 .buttons {
   font-size: 1.5em;
 }
+
 button {
   border-radius: 6px;
   background: #f7f7f7;
@@ -93,7 +111,7 @@ button {
 
 .totalcontentdetail .title {
   font-family: Roboto-Bold;
-  font-size: 28px;
+  font-size: 1.6em;
   line-height: 34px;
   color: #181818;
   font-weight: 400;
@@ -104,16 +122,15 @@ button {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
   padding-bottom: 14px;
   border-bottom: 1px solid #d9d9d9
 }
 
 .totalcontentdetail .dateandcat {
   font-family: Roboto-Regular;
-  font-size: 13px;
   color: #616161;
-  display: inline-block
+  display: inline-block;
+  margin: 5px 0;
 }
 
 .totalcontentdetail .sharemxh .fb {
@@ -244,7 +261,7 @@ button {
 .totalcontentdetail .sapo {
   margin-top: 20px;
   font-family: Arial;
-  font-size: 16px;
+  font-size: 1.1em;
   line-height: 22px;
   font-weight: 700;
   color: #333
@@ -261,7 +278,6 @@ button {
 
 .totalcontentdetail .tinlienquan li span {
   font-family: Roboto-Regular;
-  font-size: 12px;
   color: #5f5f5f;
   margin-right: 8px
 }
@@ -273,14 +289,6 @@ button {
 .totalcontentdetail .tinlienquan a {
   color: #004383;
   font-family: Roboto-Medium;
-  font-size: 14px
-}
-
-.totalcontentdetail .sharemxh {
-  width: 100%;
-  padding: 10px 0;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #d9d9d9
 }
 
 .totalcontentdetail .sharemxh.bot {
@@ -404,7 +412,6 @@ button {
 .totalcontentdetail .boxchuyengiadetail .box1 .infocg .chucdanh {
   color: #5e5d5d;
   font-family: Roboto-Light;
-  font-size: 13px;
   margin-top: 1px;
   padding-bottom: 5px;
   border-bottom: 1px solid #e7e7e7;
@@ -416,7 +423,6 @@ button {
   color: #4a4a4a;
   font-family: Roboto-Light;
   font-weight: 400;
-  font-size: 13px;
   margin-top: 6px
 }
 
@@ -467,7 +473,6 @@ button {
 .totalcontentdetail .boxchuyengiadetail .box2 ul li .innews {
   width: 100%;
   font-family: Roboto-Regular;
-  font-size: 13px;
   line-height: 19px;
   color: #5d5d5d;
   margin-top: 11px
@@ -762,7 +767,6 @@ button {
 
 .totalcontentdetail .boxtacgiakhac ul li.item .infocg .des {
   font-family: Roboto-Light;
-  font-size: 13px;
   line-height: 18px;
   color: #696969;
   margin-top: 5px
@@ -770,7 +774,6 @@ button {
 
 .totalcontentdetail .boxtacgiakhac ul li.item .infonews {
   font-family: Roboto-Regular;
-  font-size: 13px;
   line-height: 19px;
   color: #3e3e3e;
   margin-top: 5px;
@@ -807,4 +810,38 @@ button {
 
 .totalcontentdetail .tintucsukien {
   margin-bottom: 20px
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  color: transparent;
+}
+
+[data-role=content] .VCSortableInPreviewMode[type=Photo] img {
+  max-width: 100%;
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.t-contentdetail .author {
+  text-align: right;
+  font-weight: bold;
+  font-size: 17px;
+  font-family: "Time New Roman";
+  margin-bottom: 0 !important;
+  color: #333;
+}
+
+.t-contentdetail .source {
+  font-style: italic;
+  text-align: right;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+  margin-top: 8px;
 }

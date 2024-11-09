@@ -72,11 +72,12 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
                 let title = item.querySelector(".title-wrap > a")
                 const href = title?.getAttribute("href")
                 title?.setAttribute("href", "https://cafef.vn" + href)
-              
+
                 this.renderer.listen(title, 'click', (event: Event) => {
                     event.preventDefault();
                     const path = window.btoa(`${this.hosts[this.hostIndex]}/${href}`)
-                    this.router.navigate([`/${path}`]);
+                    const sourceUrl = window.btoa("https://cafef.vn" + href)
+                    this.router.navigate([`/${path}`], { queryParams: { sourceUrl } });
                 })
 
                 this.fastnews_main?.append(item)

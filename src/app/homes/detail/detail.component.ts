@@ -10,6 +10,7 @@ import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 })
 export class DetailComponent implements OnInit, AfterViewInit {
     ngUnsubscribe = new Subject<void>();
+    sourceUrl = ''
 
     constructor(
         private httpService: HttpService,
@@ -19,6 +20,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
 
     ngOnInit(): void {
         const path = window.atob(this.route.snapshot.paramMap.get('path') || "");
+        this.sourceUrl = window.atob(this.route.snapshot.queryParamMap.get("sourceUrl") || "");
         this.httpService.getDetail(path).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
             this.getDetailSuccess(data);
         })
@@ -33,7 +35,38 @@ export class DetailComponent implements OnInit, AfterViewInit {
 
         if (content) {
             const mainContentDetail = document.getElementById("main-content-detail") as Element;
-            mainContentDetail?.appendChild(content)
+
+            const title = content.querySelector("h1.title")
+            if (title) mainContentDetail?.append(title)
+
+            const topshare = content.querySelector("div.topshare")
+            if (topshare) {
+
+                const social = content.querySelector("div.social-r")
+                const source = document.createElement("a");
+                source.appendChild(document.createTextNode("Nguồn"));
+                source.setAttribute('href', this.sourceUrl)
+                source.setAttribute('target', '_blank')
+
+                if (social) social?.replaceChildren(source);
+
+                mainContentDetail?.append(topshare)
+            }
+
+            const sapo = content.querySelector("h2.sapo")
+            if (sapo) mainContentDetail?.append(sapo)
+
+            const contentdetail = content.querySelector("div.contentdetail")
+            if (contentdetail) {
+                const link_content_footer = content.querySelector("div.link-content-footer")
+                if (link_content_footer) link_content_footer?.replaceChildren("");
+
+                mainContentDetail?.append(contentdetail)
+            }
+
+            const content_source = content.querySelector("div.content_source")
+            if (content_source) mainContentDetail?.append(content_source)
+
         }
     }
 
