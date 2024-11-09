@@ -2,9 +2,9 @@ import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { HttpService } from '../services/http.service';
 import { exhaustMap } from 'rxjs/internal/operators/exhaustMap';
 import { Subject } from 'rxjs/internal/Subject';
-import { catchError, finalize, mergeMap, retryWhen, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { env } from 'src/env/env';
 
 @Component({
     selector: 'app-home-main',
@@ -74,7 +74,7 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
                 const href = title?.getAttribute("href")
                 const path = window.btoa(`${this.hosts[this.hostIndex]}${href}`)
                 const sourceUrl = window.btoa("https://cafef.vn" + href)
-                title?.setAttribute("href", `/${path}?sourceUrl=${sourceUrl}`)
+                title?.setAttribute("href", `${env.PATH}/${path}?sourceUrl=${sourceUrl}`)
 
                 this.fastnews_main?.append(item)
             })
