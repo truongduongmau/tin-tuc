@@ -74,7 +74,7 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
                 const href = title?.getAttribute("href")
                 const path = window.btoa(`${this.hosts[this.hostIndex]}${href}`)
                 const sourceUrl = window.btoa("https://cafef.vn" + href)
-                title?.setAttribute("href", `${env.PATH}/${path}?sourceUrl=${sourceUrl}`)
+                title?.setAttribute("href", `${env.PATH}${path}?sourceUrl=${sourceUrl}`)
 
                 this.fastnews_main?.append(item)
             })
