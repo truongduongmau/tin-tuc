@@ -21,16 +21,17 @@ body {
   padding: 0 5px;
 }
 
-.tinnhanh_title {
+h1.tinnhanh_title {
   font-family: Verdana;
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
   color: #cc0001;
-}
+  margin: revert;
 
-.tinnhanh_title span {
-  font-size: 1.1em;
+  span {
+    font-size: 1.1em;
+  }
 }
 
 .nviewer {
@@ -885,4 +886,14 @@ img {
 
 [data-role=content] .VCSortableInPreviewMode[type] {
   display: inline-block;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

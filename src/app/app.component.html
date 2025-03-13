@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="side-left-container">
+    <mat-drawer #sideLeft [mode]="'over'">I'm a drawer</mat-drawer>
+    <button mat-raised-button (click)="sideLeft.toggle()">Toggle drawer</button>
+    <router-outlet></router-outlet>
+</mat-drawer-container>

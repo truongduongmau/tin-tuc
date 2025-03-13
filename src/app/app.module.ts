@@ -8,6 +8,11 @@ import { HttpService } from './homes/services/http.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DetailComponent } from './homes/detail/detail.component';
 import { TimeoutInterceptor } from './interceptors/timeout.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,9 @@ import { TimeoutInterceptor } from './interceptors/timeout.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule
   ],
   providers: [
     HttpService,
