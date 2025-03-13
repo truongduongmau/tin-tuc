@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeMainComponent } from './homes/home-main/home-main.component';
-import { HttpService } from './homes/services/http.service';
+import { NewsComponent } from './news/main/main.component';
+import { HttpService } from './news/services/http.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { DetailComponent } from './homes/detail/detail.component';
+import { NewsDetailComponent } from './news/detail/detail.component';
 import { TimeoutInterceptor } from './interceptors/timeout.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,8 +17,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeMainComponent,
-    DetailComponent
+    NewsComponent,
+    NewsDetailComponent
   ],
   imports: [
     BrowserModule,

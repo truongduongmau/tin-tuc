@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 import { env } from 'src/env/env';
 
 @Component({
-    selector: 'app-home-main',
-    templateUrl: './home-main.component.html',
-    styleUrls: ['./home-main.component.css']
+    selector: 'app-news',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.css']
 })
-export class HomeMainComponent implements OnInit, AfterViewInit {
+export class NewsComponent implements OnInit, AfterViewInit {
     page: number = 1;
     isLoading: boolean = false;
     fastnews_main: any;
@@ -74,7 +74,7 @@ export class HomeMainComponent implements OnInit, AfterViewInit {
                 const href = title?.getAttribute("href")
                 const path = window.btoa(`${this.hosts[this.hostIndex]}${href}`)
                 const sourceUrl = window.btoa("https://cafef.vn" + href)
-                title?.setAttribute("href", `#/${path}?sourceUrl=${sourceUrl}`)
+                title?.setAttribute("href", `#/news/${path}?sourceUrl=${sourceUrl}`)
 
                 this.fastnews_main?.append(item)
             })

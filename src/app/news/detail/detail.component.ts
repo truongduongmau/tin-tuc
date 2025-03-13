@@ -5,10 +5,10 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 @Component({
-    selector: 'app-detail',
+    selector: 'app-new-detail',
     templateUrl: './detail.component.html'
 })
-export class DetailComponent implements OnInit, AfterViewInit {
+export class NewsDetailComponent implements OnInit, AfterViewInit {
     ngUnsubscribe = new Subject<void>();
     sourceUrl = ''
 
