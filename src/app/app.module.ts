@@ -10,9 +10,7 @@ import { NewsDetailComponent } from './news/detail/detail.component';
 import { TimeoutInterceptor } from './interceptors/timeout.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -25,7 +23,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSidenavModule, MatFormFieldModule, MatSelectModule, MatButtonModule
+    MatButtonModule, MatIconModule
   ],
   providers: [
     HttpService,
