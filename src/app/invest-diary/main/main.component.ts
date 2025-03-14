@@ -22,16 +22,17 @@ export class InvestDiaryComponent implements OnInit, AfterViewInit {
     constructor(private httpService: HttpService, private readonly renderer: Renderer2, private router: Router) { }
 
     ngOnInit(): void {
-        this.httpService.getLatest().pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
+        /* this.httpService.getLatest().pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
             if (data?.result && data.result.length) {
                 this.offset = data.result[0].update_id - this.limit
                 this.getUpdates()
             }
-        })
+        }) */
     }
 
     ngAfterViewInit() {
         this.fastnews_main = document.getElementById("fastnews-main-contents") as Element;
+        this.getUpdates()
     }
 
     getUpdates() {
@@ -51,13 +52,15 @@ export class InvestDiaryComponent implements OnInit, AfterViewInit {
         result.forEach((item) => {
             const post = item.channel_post
             const parentHtml = this.renderer.createElement('div');
-            const headerHtml = this.renderer.createElement('strong');
-            const contentHtml = this.renderer.createElement('div');
-            this.renderer.addClass(headerHtml, "news-title");
-            this.renderer.addClass(contentHtml, "nv-details");
             this.renderer.addClass(parentHtml, "item");
+
+            const headerHtml = this.renderer.createElement('h3');
             this.renderer.setProperty(headerHtml, 'innerHTML', formatDate(post.date * 1000, 'dd/MM/yyyy HH:mm', 'en-US'));
+
+            const contentHtml = this.renderer.createElement('pre');
+            this.renderer.addClass(contentHtml, "nv-details");
             this.renderer.setProperty(contentHtml, 'innerHTML', post.text);
+
             this.renderer.appendChild(parentHtml, headerHtml);
             this.renderer.appendChild(parentHtml, contentHtml);
             this.renderer.appendChild(this.fastnews_main, parentHtml);

@@ -19,7 +19,7 @@ export class HttpService {
 
     getUpdates(offset: number, limit: number = 20) {
         return this.http.get(`${this.baseUrl}/getUpdates`, {
-            params: { offset, limit }
+            //params: { offset, limit }
         });
     }
 }
