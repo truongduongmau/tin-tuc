@@ -14,7 +14,6 @@ import { env } from 'src/env/env';
 export class NewsComponent implements OnInit, AfterViewInit {
     page: number = 1;
     isLoading: boolean = false;
-    fastnews_main: any;
     callApi$: Subject<string> = new Subject();
     hostIndex: number = 0;
     hosts = [
@@ -46,7 +45,6 @@ export class NewsComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.fastnews_main = document.getElementById("fastnews-main-contents") as Element;
         this.getData()
     }
 
@@ -61,6 +59,7 @@ export class NewsComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         let dom_document = new DOMParser().parseFromString(data, "text/html");
         const news = dom_document.querySelectorAll("div.list-fast-news > .item");
+        const fastnews_main = document.getElementById("fastnews-main-contents") as Element;
         if (news.length) {
             news.forEach((item) => {
                 let timeTitle = item.querySelector("div.timeTitle")
@@ -76,7 +75,8 @@ export class NewsComponent implements OnInit, AfterViewInit {
                 const sourceUrl = window.btoa("https://cafef.vn" + href)
                 title?.setAttribute("href", `#/news/${path}?sourceUrl=${sourceUrl}`)
 
-                this.fastnews_main?.append(item)
+                if (fastnews_main)
+                    fastnews_main?.append(item)
             })
         } else {
             this.hostIndex++;

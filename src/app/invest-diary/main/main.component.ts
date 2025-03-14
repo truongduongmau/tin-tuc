@@ -1,38 +1,29 @@
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { HttpService } from '../services/http.service';
-import { exhaustMap } from 'rxjs/internal/operators/exhaustMap';
 import { Subject } from 'rxjs/internal/Subject';
-import { catchError, takeUntil } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { env } from 'src/env/env';
+import { takeUntil } from 'rxjs/operators';
 import { formatDate } from '@angular/common';
 
 @Component({
     selector: 'app-invest-diary',
     templateUrl: './main.component.html',
-    styleUrls: ['./main.component.scss']
+    styleUrls: ['./main.component.scss'],
 })
-export class InvestDiaryComponent implements OnInit, AfterViewInit {
+export class InvestDiaryComponent implements OnInit {
     isLoading: boolean = false;
     offset: number = 0;
     limit: number = 20;
-    fastnews_main: any;
     destroy$ = new Subject<void>();
 
-    constructor(private httpService: HttpService, private readonly renderer: Renderer2, private router: Router) { }
+    constructor(private httpService: HttpService, private readonly renderer: Renderer2) { }
 
     ngOnInit(): void {
-        /* this.httpService.getLatest().pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
+        this.httpService.getLatest().pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
             if (data?.result && data.result.length) {
                 this.offset = data.result[0].update_id - this.limit
                 this.getUpdates()
             }
-        }) */
-    }
-
-    ngAfterViewInit() {
-        this.fastnews_main = document.getElementById("fastnews-main-contents") as Element;
-        this.getUpdates()
+        })
     }
 
     getUpdates() {
@@ -49,6 +40,7 @@ export class InvestDiaryComponent implements OnInit, AfterViewInit {
     }
 
     renderHTML(result: any[]) {
+        const fastnews_main = document.getElementById("fastnews-main-contents") as Element;
         result.forEach((item) => {
             const post = item.channel_post
             const parentHtml = this.renderer.createElement('div');
@@ -63,11 +55,11 @@ export class InvestDiaryComponent implements OnInit, AfterViewInit {
 
             this.renderer.appendChild(parentHtml, headerHtml);
             this.renderer.appendChild(parentHtml, contentHtml);
-            this.renderer.appendChild(this.fastnews_main, parentHtml);
+
+            if (fastnews_main)
+                this.renderer.appendChild(fastnews_main, parentHtml);
         });
-
     }
-
 
     ngOnDestroy(): void {
         this.destroy$.next();
