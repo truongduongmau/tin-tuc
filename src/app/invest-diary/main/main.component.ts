@@ -42,22 +42,24 @@ export class InvestDiaryComponent implements OnInit {
     renderHTML(result: any[]) {
         const fastnews_main = document.getElementById("fastnews-main-contents") as Element;
         result.forEach((item) => {
-            const post = item.channel_post
-            const parentHtml = this.renderer.createElement('div');
-            this.renderer.addClass(parentHtml, "item");
+            const post = item.message
+            if (post) {
+                const parentHtml = this.renderer.createElement('div');
+                this.renderer.addClass(parentHtml, "item");
 
-            const headerHtml = this.renderer.createElement('h3');
-            this.renderer.setProperty(headerHtml, 'innerHTML', formatDate(post.date * 1000, 'dd/MM/yyyy HH:mm', 'en-US'));
+                const headerHtml = this.renderer.createElement('h3');
+                this.renderer.setProperty(headerHtml, 'innerHTML', formatDate(post.date * 1000, 'dd/MM/yyyy HH:mm', 'en-US'));
 
-            const contentHtml = this.renderer.createElement('pre');
-            this.renderer.addClass(contentHtml, "nv-details");
-            this.renderer.setProperty(contentHtml, 'innerHTML', post.text);
+                const contentHtml = this.renderer.createElement('pre');
+                this.renderer.addClass(contentHtml, "nv-details");
+                this.renderer.setProperty(contentHtml, 'innerHTML', post.text);
 
-            this.renderer.appendChild(parentHtml, headerHtml);
-            this.renderer.appendChild(parentHtml, contentHtml);
+                this.renderer.appendChild(parentHtml, headerHtml);
+                this.renderer.appendChild(parentHtml, contentHtml);
 
-            if (fastnews_main)
-                this.renderer.appendChild(fastnews_main, parentHtml);
+                if (fastnews_main)
+                    this.renderer.appendChild(fastnews_main, parentHtml);
+            }
         });
     }
 
