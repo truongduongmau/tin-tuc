@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { env } from 'src/env/env';
+import { formatDate } from '@angular/common';
 
 @Component({
     selector: 'app-invest-diary',
@@ -15,7 +16,7 @@ export class InvestDiaryComponent implements OnInit, AfterViewInit {
     isLoading: boolean = false;
     offset: number = 0;
     limit: number = 20;
-    data: any[] = [];
+    fastnews_main: any;
     destroy$ = new Subject<void>();
 
     constructor(private httpService: HttpService, private readonly renderer: Renderer2, private router: Router) { }
@@ -30,6 +31,7 @@ export class InvestDiaryComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        this.fastnews_main = document.getElementById("fastnews-main-contents") as Element;
     }
 
     getUpdates() {
@@ -39,10 +41,28 @@ export class InvestDiaryComponent implements OnInit, AfterViewInit {
         ).subscribe((data: any) => {
             if (data?.result && data.result.length) {
                 this.offset = data.result[0].update_id - this.limit
-                this.data = data.result.reverse()
+                this.renderHTML(data.result.reverse())
             }
             this.isLoading = false;
         })
+    }
+
+    renderHTML(result: any[]) {
+        result.forEach((item) => {
+            const post = item.channel_post
+            const parentHtml = this.renderer.createElement('div');
+            const headerHtml = this.renderer.createElement('strong');
+            const contentHtml = this.renderer.createElement('div');
+            this.renderer.addClass(headerHtml, "news-title");
+            this.renderer.addClass(contentHtml, "nv-details");
+            this.renderer.addClass(parentHtml, "item");
+            this.renderer.setProperty(headerHtml, 'innerHTML', formatDate(post.date * 1000, 'dd/MM/yyyy HH:mm', 'en-US'));
+            this.renderer.setProperty(contentHtml, 'innerHTML', post.text);
+            this.renderer.appendChild(parentHtml, headerHtml);
+            this.renderer.appendChild(parentHtml, contentHtml);
+            this.renderer.appendChild(this.fastnews_main, parentHtml);
+        });
+
     }
 
 
