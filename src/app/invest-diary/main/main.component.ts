@@ -9,7 +9,7 @@ import { env } from 'src/env/env';
 @Component({
     selector: 'app-invest-diary',
     templateUrl: './main.component.html',
-    styleUrls: ['./main.component.css']
+    styleUrls: ['./main.component.scss']
 })
 export class InvestDiaryComponent implements OnInit, AfterViewInit {
     page: number = 1;
