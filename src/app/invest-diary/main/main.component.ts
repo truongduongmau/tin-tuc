@@ -15,17 +15,34 @@ export class InvestDiaryComponent implements OnInit, AfterViewInit {
     isLoading: boolean = false;
     offset: number = 0;
     limit: number = 20;
+    data: any[] = [];
     destroy$ = new Subject<void>();
 
     constructor(private httpService: HttpService, private readonly renderer: Renderer2, private router: Router) { }
 
     ngOnInit(): void {
-        this.httpService.getLatest().pipe(takeUntil(this.destroy$)).subscribe((data) => {
-            debugger
+        this.httpService.getLatest().pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
+            if (data?.result && data.result.length) {
+                this.offset = data.result[0].update_id - this.limit
+                this.getUpdates()
+            }
         })
     }
 
     ngAfterViewInit() {
+    }
+
+    getUpdates() {
+        this.isLoading = true;
+        this.httpService.getUpdates(this.offset, this.limit).pipe(
+            takeUntil(this.destroy$)
+        ).subscribe((data: any) => {
+            if (data?.result && data.result.length) {
+                this.offset = data.result[0].update_id - this.limit
+                this.data = data.result.reverse()
+            }
+            this.isLoading = false;
+        })
     }
 
 
