@@ -7,24 +7,19 @@ import { env } from 'src/env/env';
 })
 export class HttpService {
 
+    baseUrl = 'https://api.telegram.org/bot7797871187:AAGx_g1VOYi3OcZwaqoCg27-l5mV-v8Ejhk';
+
     constructor(private http: HttpClient) { }
 
-    getContents(apiUrl: string, page: number) {
-        const salt = (new Date()).getTime();
-        return this.http.get(`${apiUrl}/doc-nhanh/trang-${page}.chn?${salt}`, {
-            responseType: "text",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-            }
+    getLatest() {
+        return this.http.get(`${this.baseUrl}/getUpdates`, {
+            params: { offset: -1 }
         });
     }
 
-    getDetail(apiUrl: string) {
-        return this.http.get(`${apiUrl}`, {
-            responseType: "text",
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-            }
+    getUpdates(offset: number, limit: number = 20) {
+        return this.http.get(`${this.baseUrl}/getUpdates`, {
+            params: { offset, limit }
         });
     }
 }
