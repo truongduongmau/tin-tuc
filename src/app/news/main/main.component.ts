@@ -17,7 +17,7 @@ export class NewsComponent implements OnInit, AfterViewInit {
     callApi$: Subject<string> = new Subject();
     hostIndex: number = 0;
     hosts = [
-        'https://cors-proxy-worker.truongduongmau.workers.dev/?url=https://cafef.vn',
+        //'https://cors-proxy-worker.truongduongmau.workers.dev/?url=https://cafef.vn',
         'https://cors-cafef.onrender.com/https://cafef.vn',
         'https://corsproxy.io/https://cafef.vn',
         'https://cors-anywhere.herokuapp.com/https://cafef.vn',
