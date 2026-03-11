@@ -19,8 +19,8 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
     ) { }
 
     ngOnInit(): void {
-        const path = window.atob(this.route.snapshot.paramMap.get('path') || "");
-        this.sourceUrl = window.atob(this.route.snapshot.queryParamMap.get("sourceUrl") || "");
+        const path = window.atob(decodeURIComponent(this.route.snapshot.paramMap.get('path') || ""));
+        this.sourceUrl = window.atob(decodeURIComponent(this.route.snapshot.queryParamMap.get("sourceUrl") || ""));
         this.httpService.getDetail(path).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
             this.getDetailSuccess(data);
         })

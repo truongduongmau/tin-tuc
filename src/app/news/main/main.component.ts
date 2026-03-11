@@ -17,7 +17,7 @@ export class NewsComponent implements OnInit, AfterViewInit {
     callApi$: Subject<string> = new Subject();
     hostIndex: number = 0;
     hosts = [
-        //'https://cors-proxy-worker.truongduongmau.workers.dev/?url=https://cafef.vn',
+        'https://cors-proxy-worker.truongduongmau.workers.dev/?url=https://cafef.vn',
         'https://cors-cafef.onrender.com/https://cafef.vn',
         'https://corsproxy.io/https://cafef.vn',
         'https://cors-anywhere.herokuapp.com/https://cafef.vn',
@@ -71,8 +71,8 @@ export class NewsComponent implements OnInit, AfterViewInit {
                 title?.setAttribute('target', '_blank')
 
                 const href = title?.getAttribute("href")
-                const path = window.btoa(`${this.hosts[this.hostIndex]}${href}`)
-                const sourceUrl = window.btoa("https://cafef.vn" + href)
+                const path = encodeURIComponent(window.btoa(`${this.hosts[this.hostIndex]}${href}`))
+                const sourceUrl = encodeURIComponent(window.btoa("https://cafef.vn" + href))
                 title?.setAttribute("href", `#/news/${path}?sourceUrl=${sourceUrl}`)
 
                 if (fastnews_main)
