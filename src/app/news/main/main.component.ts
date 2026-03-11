@@ -18,6 +18,7 @@ export class NewsComponent implements OnInit, AfterViewInit {
     hostIndex: number = 0;
     hosts = [
         'https://cors-proxy-worker.truongduongmau.workers.dev/?url=https://cafef.vn',
+        'https://cors-cafef.vercel.app/api/proxy?url=https://cafef.vn',
         'https://cors-cafef.onrender.com/https://cafef.vn',
         'https://corsproxy.io/https://cafef.vn',
         'https://cors-anywhere.herokuapp.com/https://cafef.vn',
